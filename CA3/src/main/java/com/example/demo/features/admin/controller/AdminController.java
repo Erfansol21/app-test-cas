@@ -1,7 +1,5 @@
 package com.example.demo.features.admin.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,11 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import com.example.demo.features.admin.dto.AdminLogin;
 import com.example.demo.features.admin.model.Admin;
 import com.example.demo.features.admin.service.AdminServices;
-import com.example.demo.features.product.model.Product;
+import com.example.demo.features.admin.service.AdminAuthService;
 import com.example.demo.features.product.service.ProductServices;
-import com.example.demo.features.user.model.User;
 import com.example.demo.features.user.service.UserServices;
-import com.example.demo.features.order.model.Orders;
 import com.example.demo.features.order.service.OrderServices;
 
 @Controller
@@ -23,17 +19,28 @@ public class AdminController {
 
     @Autowired
     private AdminServices adminServices;
+
+    @Autowired
+    private AdminAuthService adminAuthService;
+
     @Autowired
     private UserServices userServices;
+
     @Autowired
     private ProductServices productServices;
+
     @Autowired
     private OrderServices orderServices;
 
-    // Admin login
     @PostMapping("/login")
     public String login(@ModelAttribute("adminLogin") AdminLogin login, Model model) {
-        if (adminServices.validateAdminCredentials(login.getEmail(), login.getPassword())) {
+
+        boolean authenticated = adminAuthService.authenticate(
+                login.getEmail(),
+                login.getPassword()
+        );
+
+        if (authenticated) {
             return "redirect:/admin/services";
         } else {
             model.addAttribute("error", "Invalid email or password");
@@ -41,7 +48,6 @@ public class AdminController {
         }
     }
 
-    // Admin dashboard
     @GetMapping("/services")
     public String dashboard(Model model) {
         model.addAttribute("users", userServices.getAllUser());
@@ -51,7 +57,6 @@ public class AdminController {
         return "Admin_Page";
     }
 
-    // CRUD for Admin
     @GetMapping("/add")
     public String addAdminPage() {
         return "Add_Admin";

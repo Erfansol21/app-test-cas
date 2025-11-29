@@ -10,58 +10,34 @@ import com.example.demo.features.user.model.User;
 import com.example.demo.features.user.repository.UserRepository;
 
 @Component
-public class UserServices 
-{
-	@Autowired
-	private UserRepository userRepository;
+public class UserServices {
 
-	public List<User> getAllUser()
-	{
-		List<User> users = (List<User>) this.userRepository.findAll();
-		return users;
-	}
+    @Autowired
+    private UserRepository userRepository;
 
-	public User getUser(int id)
-	{
-		Optional<User> optional = this.userRepository.findById(id);
-		User user = optional.get();
-		return user;
-	}
-	public User getUserByEmail(String email)
-	{
-	 User user=	this.userRepository.findUserByUemail(email);
-	 return user;
-	}
+    public List<User> getAllUser() {
+        return (List<User>) userRepository.findAll();
+    }
 
-	public void updateUser(User user,int id)
-	{
-		user.setU_id(id);
-		 this.userRepository.save(user);
-	}
+    public User getUser(int id) {
+        Optional<User> optional = userRepository.findById(id);
+        return optional.orElse(null);
+    }
 
-	public void deleteUser(int id)
-	{
-		this.userRepository.deleteById(id);
-	}
+    public User getUserByEmail(String email) {
+        return userRepository.findUserByUemail(email);
+    }
 
-	public void addUser(User user)
-	{
-	this.userRepository.save(user);
-	}
-	
-	public boolean validateLoginCredentials(String email,String password)
-	{
-		List<User> users = (List<User>) this.userRepository.findAll();
-		for(User u:users)
-		{
-		if(u!=null && u.getUpassword().equals(password) && u.getUemail().equals(email))
-		{
-			return true;
-		}
-		}
-		return false;
-	}
-	
+    public void updateUser(User user, int id) {
+        user.setU_id(id);
+        userRepository.save(user);
+    }
 
+    public void deleteUser(int id) {
+        userRepository.deleteById(id);
+    }
 
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
 }
