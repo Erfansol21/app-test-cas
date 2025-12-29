@@ -1,0 +1,254 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Login page snapshot Login.html should match snapshot 1`] = `
+<html>
+  <head>
+    
+	
+    <meta
+      charset="UTF-8"
+    />
+    
+	
+    <title>
+      FoodFrenzy
+    </title>
+    
+	
+    <link
+      href="./img/b.png"
+      rel="icon"
+      type="image/x-icon"
+    />
+    
+	
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    
+	
+    <link
+      href=""
+      rel="stylesheet"
+      th:href="@{/css/Navigation.css}"
+    />
+    
+	
+    <link
+      href=""
+      rel="stylesheet"
+      th:href="@{/css/Login.css}"
+    />
+    
+
+  </head>
+  
+
+
+  <body>
+    
+	
+    <nav
+      th:replace="~{Navigation::navbar()}"
+    >
+      
+	
+    </nav>
+    
+	
+    <div
+      class="LoginContainer"
+    >
+      
+		
+      <div
+        class="admin"
+      >
+        
+			
+        <div
+          class="content"
+        >
+          
+				
+          <strong
+            style="font-size: 16px;margin-bottom: 0px;"
+          >
+            BUSINESS
+          </strong>
+          
+				
+          <h2>
+            For 
+            <span
+              style="color:green;"
+            >
+              Admins
+            </span>
+          </h2>
+          
+
+				
+          <form
+            method="post"
+            th:action="@{/adminLogin}"
+          >
+            
+					
+            <b>
+              Email :
+            </b>
+            
+					
+            <input
+              class="email"
+              name="email"
+              placeholder="Enter email..."
+              type="email"
+            />
+             
+            <br />
+            
+					
+            <b>
+              Password:
+            </b>
+            
+					
+            <input
+              class="password"
+              name="password"
+              placeholder="Enter password"
+              type="password"
+            />
+            
+					
+            <small
+              style="color: red;"
+              th:text="\${error}"
+            />
+            <br />
+            
+					
+            <button
+              class="loginButton"
+              type="submit"
+            >
+              Log in
+            </button>
+            
+				
+          </form>
+          
+			
+        </div>
+        
+		
+      </div>
+      
+		
+      <div
+        class="user"
+      >
+        
+			
+        <div
+          class="content"
+        >
+          
+				
+          <h2>
+             For 
+            <span
+              style="color:green;"
+            >
+              Users
+            </span>
+          </h2>
+          
+				
+          <form
+            class="form"
+            method="post"
+            th:action="@{/userLogin}"
+          >
+            
+					
+            <b>
+              Email :
+            </b>
+            
+					
+            <input
+              name="userEmail"
+              placeholder="Enter email"
+              type="email"
+            />
+            <br />
+            
+
+					
+            <b>
+              Password:
+            </b>
+            
+					
+            <input
+              class="userPassword"
+              maxlength="8"
+              minlength="4"
+              name="userPassword"
+              placeholder="Enter password"
+              required=""
+              type="password"
+            />
+            <br />
+            
+
+					
+            <small
+              style="color: red;"
+              th:text="\${error2}"
+            />
+            <br />
+            
+					
+            <button
+              class="loginButton"
+              type="submit"
+            >
+              Log in
+            </button>
+            <br />
+            
+
+					
+            <p>
+              I don't have an account? 
+              <a
+                href="register.html"
+                style="color: green;"
+              >
+                Register Here
+              </a>
+            </p>
+            
+				
+          </form>
+          
+			
+        </div>
+        
+		
+      </div>
+      
+	
+    </div>
+    
+
+
+
+  </body>
+</html>
+`;
