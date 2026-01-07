@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>FoodFrenzy</title>
+	<link rel="icon" type="image/x-icon" href="./img/b.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="" th:href="@{/css/Navigation.css}" />
+	<link rel="stylesheet" href="" th:href="@{/css/Login.css}" />
+</head>
+
+<body>
+	<nav th:replace="~{Navigation::navbar()}">
+	</nav>
+	<div class="LoginContainer">
+		<div class="admin">
+			<div class="content">
+				<strong style="font-size: 16px;margin-bottom: 0px;">BUSINESS</strong>
+				<h2>For <span style="color:green;">Admins</span></h2>
+
+                <form th:action="@{/adminLogin}" method="post" th:object="${adminLogin}">
+                    <b>Email :</b>
+                    <input type="email" th:field="*{email}" placeholder="Enter email..."><br/>
+
+                    <b>Password:</b>
+                    <input type="password" th:field="*{password}" placeholder="Enter password"><br/>
+
+                    <small style="color:red" th:text="${error}"></small><br/>
+                    <button type="submit">Log in</button>
+                </form>
+			</div>
+		</div>
+		<div class="user">
+			<div class="content">
+				<h2> For <span style="color:green;">Users</span></h2>
+                <form th:action="@{/userLogin}" method="post" th:object="${userLogin}">
+                    <b>Email :</b>
+                    <input type="email" th:field="*{userEmail}" placeholder="Enter email"><br/>
+
+                    <b>Password:</b>
+                    <input type="password" th:field="*{userPassword}" placeholder="Enter password"><br/>
+
+                    <small style="color:red" th:text="${error2}"></small><br/>
+                    <button type="submit">Log in</button>
+                </form>
+
+            </div>
+		</div>
+	</div>
+</body>
+
+</html>
